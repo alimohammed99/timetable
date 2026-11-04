@@ -3,212 +3,668 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UNILORIN Timetable</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="theme-color" content="#f5f7fb" />
+    <meta
+      name="description"
+      content="The 200 Level Employment Relations and Human Resources Management lecture timetable for the 2026/2027 Harmattan session."
+    />
+    <title>Lecture Timetable — UNILORIN</title>
     <style>
+      :root {
+        color-scheme: light;
+        font-family:
+          Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: auto;
+        --ink: #111827;
+        --muted: #46536a;
+        --line: #dce3eb;
+        --mint: #006b5d;
+        --cyan: #075e83;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
       body {
-        font-family: "Inter", sans-serif;
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(ellipse at 12% 0%, rgba(181, 236, 220, 0.43), transparent 34rem),
+          radial-gradient(ellipse at 95% 15%, rgba(202, 217, 255, 0.52), transparent 35rem),
+          #f5f7fb;
       }
-      .course-cell {
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        margin: 2px 0;
-        transition: transform 0.2s, box-shadow 0.2s;
+
+      .page-shell {
+        width: min(1440px, calc(100% - 64px));
+        margin: 0 auto;
+        padding: 32px 0 34px;
       }
-      .course-cell:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+      .topbar,
+      .brand,
+      .session-pill,
+      .section-heading,
+      .footer {
+        display: flex;
+        align-items: center;
       }
-      .course-time {
-        color: #dc2626; 
-        font-size: 1rem; 
-        font-weight: 900;
-        margin-top: 0.5rem;
-        display: block;
-        letter-spacing: -0.01em;
+
+      .topbar {
+        justify-content: space-between;
+        margin-bottom: 48px;
       }
-      .course-venue {
-        color: #4338ca; /* Indigo color for visibility */
+
+      .brand {
+        gap: 12px;
+        color: #243149;
+        font-size: 0.84rem;
         font-weight: 800;
-        font-size: 0.95rem; /* Slightly larger than standard text */
+        letter-spacing: 0.035em;
       }
+
+      .brand-mark {
+        display: grid;
+        width: 36px;
+        height: 36px;
+        place-items: center;
+        border: 1px solid rgba(8, 127, 114, 0.16);
+        border-radius: 12px;
+        color: var(--mint);
+        background: linear-gradient(145deg, #fff, #e6f7f2);
+        box-shadow: 0 5px 16px rgba(27, 73, 82, 0.1);
+      }
+
+      .brand-mark svg {
+        width: 19px;
+        height: 19px;
+      }
+
+      .session-pill {
+        gap: 8px;
+        padding: 9px 13px;
+        border: 1px solid rgba(54, 72, 100, 0.1);
+        border-radius: 999px;
+        color: #263650;
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: 0 4px 14px rgba(35, 54, 84, 0.04);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.035em;
+      }
+
+      .session-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #15a68c;
+        box-shadow: 0 0 0 4px rgba(21, 166, 140, 0.1);
+      }
+
+      .hero {
+        margin-bottom: 35px;
+        animation: arrive 650ms both;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 15px;
+        color: #006b5d;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 22px;
+        height: 1px;
+        background: linear-gradient(90deg, var(--mint), transparent);
+        content: "";
+      }
+
+      h1 {
+        margin: 0;
+        color: #192338;
+        font-size: clamp(2.6rem, 6vw, 4.5rem);
+        font-weight: 720;
+        letter-spacing: -0.075em;
+        line-height: 1;
+      }
+
+      h1 span {
+        color: transparent;
+        background: linear-gradient(100deg, #087f72 6%, #167ab0 92%);
+        background-clip: text;
+        -webkit-background-clip: text;
+      }
+
+      .hero-subtitle {
+        max-width: 680px;
+        margin: 18px 0 0;
+        color: #45536a;
+        font-size: clamp(0.98rem, 1.8vw, 1.08rem);
+        font-weight: 550;
+        line-height: 1.7;
+      }
+
+      .hero-subtitle strong {
+        color: #243149;
+        font-weight: 750;
+      }
+
+      .schedule-panel {
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.92);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.84);
+        box-shadow:
+          0 24px 70px rgba(45, 63, 94, 0.11),
+          0 2px 8px rgba(45, 63, 94, 0.035),
+          inset 0 1px 0 #fff;
+        backdrop-filter: blur(18px);
+        animation: arrive 650ms 80ms both;
+      }
+
+      .section-heading {
+        justify-content: space-between;
+        gap: 16px;
+        padding: 21px 25px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section-heading h2 {
+        margin: 0;
+        color: #18243a;
+        font-size: 0.96rem;
+        font-weight: 800;
+        letter-spacing: -0.015em;
+      }
+
+      .class-count {
+        color: #46536a;
+        font-size: 0.8rem;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .table-scroll {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scrollbar-color: #becbd5 #f1f4f7;
+        scrollbar-width: thin;
+      }
+
+      .timetable {
+        width: 100%;
+        min-width: 1500px;
+        border-collapse: separate;
+        border-spacing: 0;
+        table-layout: fixed;
+        text-align: left;
+      }
+
+      .timetable th,
+      .timetable td {
+        border-right: 1px solid #dfe6ee;
+        border-bottom: 1px solid #dfe6ee;
+      }
+
+      .timetable tr > :last-child {
+        border-right: 0;
+      }
+
+      .timetable tbody tr:last-child > * {
+        border-bottom: 0;
+      }
+
+      .timetable thead th {
+        height: 64px;
+        padding: 12px 10px;
+        color: #27364d;
+        background: #f7f9fc;
+        font-size: 0.76rem;
+        font-weight: 850;
+        letter-spacing: 0;
+        line-height: 1.35;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .timetable thead th:first-child {
+        width: 138px;
+        padding-left: 22px;
+        color: #1d2b42;
+        background: #f2f6f9;
+        text-align: left;
+      }
+
+      .timetable tbody th {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        width: 138px;
+        padding: 16px 21px;
+        color: #1d2b42;
+        background: #fbfcfe;
+        font-size: 0.94rem;
+        font-weight: 850;
+        vertical-align: middle;
+      }
+
+      .timetable tbody tr {
+        height: 142px;
+      }
+
+      .timetable td {
+        padding: 9px;
+        background: rgba(255, 255, 255, 0.55);
+        vertical-align: middle;
+        transition: background-color 180ms ease;
+      }
+
+      .timetable td:empty {
+        background: #fbfcfe;
+      }
+
+      .timetable td:empty:hover {
+        background: #f5f9fb;
+      }
+
+      .course {
+        --accent: #167ab0;
+        min-height: 112px;
+        padding: 13px 12px;
+        border: 1px solid color-mix(in srgb, var(--accent) 18%, white);
+        border-left: 3px solid var(--accent);
+        border-radius: 12px;
+        background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 8%, white), #fff 75%);
+        box-shadow: 0 5px 14px rgba(44, 65, 92, 0.055);
+        transition:
+          transform 180ms ease,
+          box-shadow 180ms ease,
+          border-color 180ms ease;
+      }
+
+      .course:hover {
+        transform: translateY(-3px);
+        border-color: color-mix(in srgb, var(--accent) 34%, white);
+        box-shadow: 0 10px 24px rgba(44, 65, 92, 0.12);
+      }
+
+      .course-topline {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 6px;
+        margin-bottom: 8px;
+      }
+
       .course-code {
-        font-weight: 800;
-        color: #111827;
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 900;
+        letter-spacing: 0.035em;
+        white-space: nowrap;
       }
-      .course-title {
-        font-size: 0.875rem;
-        color: #4b5563;
-        font-weight: 500;
+
+      .venue {
+        padding: 5px 10px;
+        border: 1px solid var(--accent);
+        border-radius: 999px;
+        color: #fff;
+        background: var(--accent);
+        box-shadow: 0 3px 9px color-mix(in srgb, var(--accent) 26%, transparent);
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.045em;
+        white-space: nowrap;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
+      }
+
+      .course h3 {
+        margin: 0;
+        color: #172338;
+        font-size: 0.84rem;
+        font-weight: 800;
+        line-height: 1.4;
+      }
+
+      .course time {
+        display: block;
+        margin-top: 9px;
+        color: #34445c;
+        font-size: 0.72rem;
+        font-weight: 800;
+        line-height: 1.35;
+        white-space: nowrap;
+      }
+
+      .accent-blue {
+        --accent: #2f70bd;
+      }
+
+      .accent-violet {
+        --accent: #7956bd;
+      }
+
+      .accent-amber {
+        --accent: #a36500;
+      }
+
+      .accent-cyan {
+        --accent: #087f8c;
+      }
+
+      .accent-rose {
+        --accent: #b94d69;
+      }
+
+      .accent-orange {
+        --accent: #ad5d18;
+      }
+
+      .footer {
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 18px;
+        color: #46536a;
+        font-size: 0.75rem;
+        font-weight: 550;
+        line-height: 1.6;
+      }
+
+      .footer-note {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .footer-note svg {
+        flex: 0 0 auto;
+        width: 15px;
+        height: 15px;
+        margin-top: 1px;
+        color: var(--mint);
+      }
+
+      .footer-label {
+        color: #263650;
+        font-weight: 850;
+        white-space: nowrap;
+      }
+
+      @keyframes arrive {
+        from {
+          transform: translateY(10px);
+          opacity: 0;
+        }
+
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .page-shell {
+          width: calc(100% - 32px);
+          padding-top: 22px;
+        }
+
+        .topbar {
+          margin-bottom: 38px;
+        }
+
+        .section-heading {
+          padding: 18px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .page-shell {
+          width: calc(100% - 24px);
+          padding-top: 16px;
+        }
+
+        .brand {
+          gap: 8px;
+          max-width: 68%;
+          font-size: 0.64rem;
+          line-height: 1.4;
+        }
+
+        .brand-mark {
+          flex: 0 0 auto;
+          width: 32px;
+          height: 32px;
+        }
+
+        .session-pill {
+          gap: 6px;
+          padding: 8px 9px;
+          font-size: 0.61rem;
+        }
+
+        h1 {
+          font-size: clamp(2.45rem, 11vw, 3.5rem);
+        }
+
+        .hero-subtitle {
+          font-size: 0.88rem;
+        }
+
+        .schedule-panel {
+          border-radius: 17px;
+        }
+
+        .section-heading h2 {
+          font-size: 0.81rem;
+        }
+
+        .class-count {
+          font-size: 0.66rem;
+        }
+
+        .footer {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 9px;
+          font-size: 0.67rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
       }
     </style>
   </head>
-  <body class="bg-slate-200 min-h-screen p-6 flex flex-col items-center">
-    <div class="max-w-7xl w-full mx-auto bg-gradient-to-br from-indigo-50 via-white to-blue-50 rounded-3xl shadow-2xl p-8 border border-white">
-      <!-- Header -->
-      <div class="text-center mb-8">
-        <h1 class="text-3xl font-black text-slate-900 tracking-tight">
-          UNILORIN • Lecture Timetable
-        </h1>
-        <p class="text-sm font-bold text-indigo-600/60 uppercase tracking-widest mt-1">100 Level • Rain Semester 2025/2026</p>
-      </div>
+  <body>
+    <main class="page-shell">
+      <nav class="topbar" aria-label="Page information">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M5 18V6l7 8 7-8v12"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+          <span>UNILORIN <span aria-hidden="true">/</span> EMPLOYMENT RELATIONS &amp; HRM</span>
+        </div>
+        <div class="session-pill"><span class="session-dot" aria-hidden="true"></span>2026 / 2027</div>
+      </nav>
 
-      <div class="overflow-x-auto">
-        <table class="w-full border border-slate-300 text-sm text-center bg-white/40 backdrop-blur-md rounded-xl overflow-hidden">
-          <!-- HEADER -->
-          <thead class="bg-slate-800 text-slate-100">
-            <tr>
-              <th class="border p-2">Day</th>
-              <th class="border p-2">8am</th>
-              <th class="border p-2">9am</th>
-              <th class="border p-2">10am</th>
-              <th class="border p-2">11am</th>
-              <th class="border p-2">12pm</th>
-              <th class="border p-2">1pm</th>
-              <th class="border p-2">2pm</th>
-              <th class="border p-2">3pm</th>
-              <th class="border p-2">4pm</th>
-              <th class="border p-2">5pm</th>
-              <th class="border p-2">6pm</th>
-            </tr>
-          </thead>
+      <header class="hero">
+        <p class="eyebrow">Harmattan academic session</p>
+        <h1>Lecture <span>timetable.</span></h1>
+        <p class="hero-subtitle">
+          <strong>Employment Relations &amp; Human Resources Management</strong>
+          <span aria-hidden="true">·</span> 200 Level
+          <span aria-hidden="true">·</span> Monday to Wednesday
+        </p>
+      </header>
 
-          <tbody class="text-gray-800">
-            <!-- MONDAY -->
-            <tr>
-              <td class="border font-semibold p-2">Mon</td>
+      <section class="schedule-panel" aria-labelledby="schedule-title">
+        <div class="section-heading">
+          <h2 id="schedule-title">Weekly schedule</h2>
+          <span class="class-count">7 lectures <span aria-hidden="true">·</span> 3 days</span>
+        </div>
 
-              <td colspan="3" class="border p-2">
-                <div class="bg-blue-200 course-cell">
-                  <span class="course-code">AMS 102</span> <span class="course-venue">( MLT )</span><br /><span class="course-title">Basic Maths</span>
-                  <span class="course-time">8am–10am</span>
-                </div>
-              </td>
+        <div class="table-scroll" tabindex="0" aria-label="Timetable; scroll horizontally to see all hours">
+          <table class="timetable">
+            <thead>
+              <tr>
+                <th scope="col">Day / Time</th>
+                <th scope="col">8:00 – 9:00 AM</th>
+                <th scope="col">9:00 – 10:00 AM</th>
+                <th scope="col">10:00 – 11:00 AM</th>
+                <th scope="col">11:00 AM – 12:00 PM</th>
+                <th scope="col">12:00 – 1:00 PM</th>
+                <th scope="col">1:00 – 2:00 PM</th>
+                <th scope="col">2:00 – 3:00 PM</th>
+                <th scope="col">3:00 – 4:00 PM</th>
+                <th scope="col">4:00 – 5:00 PM</th>
+                <th scope="col">5:00 – 6:00 PM</th>
+                <th scope="col">6:00 – 7:00 PM</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Monday</th>
+                <td></td>
+                <td></td>
+                <td colspan="2">
+                  <article class="course accent-blue">
+                    <div class="course-topline">
+                      <span class="course-code">EHR 207</span>
+                      <span class="venue">MLR7</span>
+                    </div>
+                    <h3>Public Sector Human Resource Management</h3>
+                    <time datetime="10:00">10:00 AM – 12:00 PM</time>
+                  </article>
+                </td>
+                <td></td>
+                <td></td>
+                <td colspan="2">
+                  <article class="course accent-violet">
+                    <div class="course-topline">
+                      <span class="course-code">EHR 203</span>
+                      <span class="venue">MLR7</span>
+                    </div>
+                    <h3>Trade Unions and Employers Association</h3>
+                    <time datetime="14:00">2:00 PM – 4:00 PM</time>
+                  </article>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">Tuesday</th>
+                <td colspan="2">
+                  <article class="course accent-amber">
+                    <div class="course-topline">
+                      <span class="course-code">EHR 205</span>
+                      <span class="venue">MLR7</span>
+                    </div>
+                    <h3>Industrial and Organizational Behaviours</h3>
+                    <time datetime="08:00">8:00 AM – 10:00 AM</time>
+                  </article>
+                </td>
+                <td colspan="2">
+                  <article class="course accent-cyan">
+                    <div class="course-topline">
+                      <span class="course-code">UIL-EHR 201</span>
+                      <span class="venue">MLR6</span>
+                    </div>
+                    <h3>Labour Law</h3>
+                    <time datetime="10:00">10:00 AM – 12:00 PM</time>
+                  </article>
+                </td>
+                <td></td>
+                <td></td>
+                <td colspan="2">
+                  <article class="course accent-rose">
+                    <div class="course-topline">
+                      <span class="course-code">UIL-EHR 203</span>
+                      <span class="venue">MLR7</span>
+                    </div>
+                    <h3>Statistics for Personnel Management II</h3>
+                    <time datetime="14:00">2:00 PM – 4:00 PM</time>
+                  </article>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">Wednesday</th>
+                <td colspan="2">
+                  <article class="course accent-cyan">
+                    <div class="course-topline">
+                      <span class="course-code">EHR 201</span>
+                      <span class="venue">VIRTUAL</span>
+                    </div>
+                    <h3>Human Resource Planning and Administration</h3>
+                    <time datetime="08:00">8:00 AM – 10:00 AM</time>
+                  </article>
+                </td>
+                <td></td>
+                <td></td>
+                <td colspan="2">
+                  <article class="course accent-orange">
+                    <div class="course-topline">
+                      <span class="course-code">ENT 211</span>
+                      <span class="venue">MLT</span>
+                    </div>
+                    <h3>Entrepreneurship and Innovation</h3>
+                    <time datetime="12:00">12:00 PM – 2:00 PM</time>
+                  </article>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-              <td class="border"></td>
-              <td class="border"></td>
-              <td class="border"></td>
-
-              <!-- AMS 104 2–4pm -->
-              <td colspan="3" class="border p-2">
-                <div class="bg-purple-200 course-cell">
-                  <span class="course-code">AMS 104</span> <span class="course-venue">( MLT )</span><br /><span class="course-title">Principles of Project Mgt</span>
-                  <span class="course-time">2pm–4pm</span>
-                </div>
-              </td>
-
-              <!-- <td colspan="2" class="border p-2">
-                <div class="bg-green-200 course-cell">
-                  <span class="course-code">UIL-EHR 102</span> <span class="course-venue">( LR4 )</span><br /><span class="course-title">Intro to Business</span>
-                  <span class="course-time">5pm–6pm</span>
-                </div>
-              </td> -->
-            </tr>
-
-            <!-- TUESDAY -->
-            <tr>
-              <td class="border font-semibold p-2">Tue</td>
-
-              <td class="border"></td>
-
-              <!-- ECO 102 9–11am -->
-              <td colspan="3" class="border p-2">
-                <div class="bg-yellow-200 course-cell">
-                  <span class="course-code">ECO 102</span> <span class="course-venue">( SSLT )</span><br /><span class="course-title">Principles of Economics II</span>
-                  <span class="course-time">9am–11am</span>
-                </div>
-              </td>
-
-              <!-- <td class="border"></td> -->
-
-              <!-- UIL-EHR 102 12–2pm -->
-              <td colspan="3" class="border p-2">
-                <div class="bg-green-200 course-cell">
-                  <span class="course-code">UIL-EHR 102</span> <span class="course-venue">( LR4 )</span><br /><span class="course-title">Intro to Business</span>
-                  <span class="course-time">12pm–2pm</span>
-                </div>
-              </td>
-
-              <td class="border"></td>
-
-              <!-- AMS 104 4–5pm -->
-              <td class="border p-2" colspan="3">
-                <div class="flex gap-2">
-                  <div class="bg-purple-200 course-cell flex-1">
-                    <span class="course-code">AMS 104</span> <span class="course-venue">( MLT )</span><br /><span class="course-title">Principles of Project Mgt</span>
-                    <span class="course-time">4pm–5pm</span>
-                  </div>
-                  <div class="bg-blue-200 course-cell flex-1">
-                    <span class="course-code">AMS 102</span> <span class="course-venue">( MLT )</span><br /><span class="course-title">Basic Maths</span>
-                    <span class="course-time">5pm–6pm</span>
-                  </div>
-                </div>
-              </td>
-
-            </tr>
-
-            <!-- WEDNESDAY -->
-            <tr>
-              <td class="border font-semibold p-2">Wed</td>
-
-              <td colspan="4" class="border p-2">
-                <div class="bg-indigo-200 course-cell">
-                  <span class="course-code">UIL-EHR 104</span> <span class="course-venue">( MLR7 )</span><br /><span class="course-title">Statistics for Personnel Management I</span>
-                  <span class="course-time">8am–11am</span>
-                </div>
-              </td>
-
-              <td class="border"></td>
-              <td class="border"></td>
-              <!-- <td class="border"></td> -->
-
-              <td colspan="2" class="border p-2">
-                <div class="bg-green-200 course-cell">
-                  <span class="course-code">UIL-EHR 102</span> <span class="course-venue">( LR4 )</span><br /><span class="course-title">Intro to Business</span>
-                  <span class="course-time">2pm–3pm</span>
-                </div>
-              </td>
-
-              <td class="border"></td>
-              <td class="border"></td>
-            </tr>
-
-            <!-- THURSDAY -->
-            <tr>
-              <td class="border font-semibold p-2">Thu</td>
-
-              <td class="border"></td>
-              <td class="border"></td>
-              <td class="border"></td>
-
-              <td colspan="3" class="border p-2">
-                <div class="bg-red-200 course-cell">
-                  <span class="course-code">EHR 102</span> <span class="course-venue">( MLR8 )</span><br /><span class="course-title">Intro to Employment Relations</span>
-                  <span class="course-time">11am–1pm</span>
-                </div>
-              </td>
-
-              <td class="border"></td>
-
-              <!-- <td colspan="2" class="border p-2">
-                <div class="bg-green-200 course-cell">
-                  <span class="course-code">UIL-EHR 102</span> <span class="course-venue">( LR4 )</span><br /><span class="course-title">Intro to Business</span>
-                  <span class="course-time">3pm–4pm</span>
-                </div>
-              </td> -->
-
-              <td class="border"></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Virtual course note -->
-      <div class="mt-4 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
-        <strong class="text-gray-700">Note:</strong> <span class="course-code">GST 112</span> <span class="course-venue">( Virtual )</span> – <span class="course-title inline">Nigerian Peoples and Culture</span><br />
-        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Day: Thursday | Time: 12pm – 2pm</span>
-      </div>
-    </div>
+      <footer class="footer">
+        <div class="footer-note">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path
+              d="M10 2.5a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15Zm0 4v4m0 2.5h.01"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+          <span>Please confirm lecture times and venues with the department if any updates are announced.</span>
+        </div>
+        <span class="footer-label">200 LEVEL <span aria-hidden="true">·</span> HARMATTAN</span>
+      </footer>
+    </main>
   </body>
 </html>
