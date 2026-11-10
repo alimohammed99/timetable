@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f5f7fb" />
+    <meta name="theme-color" content="#f3f6fa" />
     <meta
       name="description"
       content="The 200 Level Employment Relations and Human Resources Management lecture timetable for the 2026/2027 Harmattan session."
@@ -34,16 +34,13 @@
         min-height: 100vh;
         margin: 0;
         color: var(--ink);
-        background:
-          radial-gradient(ellipse at 12% 0%, rgba(181, 236, 220, 0.43), transparent 34rem),
-          radial-gradient(ellipse at 95% 15%, rgba(202, 217, 255, 0.52), transparent 35rem),
-          #f5f7fb;
+        background: #f3f6fa;
       }
 
       .page-shell {
         width: min(1440px, calc(100% - 64px));
         margin: 0 auto;
-        padding: 32px 0 34px;
+        padding: 28px 0 32px;
       }
 
       .topbar,
@@ -57,13 +54,13 @@
 
       .topbar {
         justify-content: space-between;
-        margin-bottom: 48px;
+        margin-bottom: 36px;
       }
 
       .brand {
         gap: 12px;
         color: #243149;
-        font-size: 0.84rem;
+        font-size: 0.9rem;
         font-weight: 800;
         letter-spacing: 0.035em;
       }
@@ -93,7 +90,7 @@
         color: #263650;
         background: rgba(255, 255, 255, 0.72);
         box-shadow: 0 4px 14px rgba(35, 54, 84, 0.04);
-        font-size: 0.72rem;
+        font-size: 0.78rem;
         font-weight: 700;
         letter-spacing: 0.035em;
       }
@@ -107,8 +104,7 @@
       }
 
       .hero {
-        margin-bottom: 35px;
-        animation: arrive 650ms both;
+        margin-bottom: 26px;
       }
 
       .eyebrow {
@@ -117,7 +113,7 @@
         gap: 9px;
         margin: 0 0 15px;
         color: #006b5d;
-        font-size: 0.74rem;
+        font-size: 0.8rem;
         font-weight: 800;
         letter-spacing: 0.15em;
         text-transform: uppercase;
@@ -133,7 +129,7 @@
       h1 {
         margin: 0;
         color: #192338;
-        font-size: clamp(2.6rem, 6vw, 4.5rem);
+        font-size: clamp(2.8rem, 6.2vw, 4.7rem);
         font-weight: 720;
         letter-spacing: -0.075em;
         line-height: 1;
@@ -150,7 +146,7 @@
         max-width: 680px;
         margin: 18px 0 0;
         color: #45536a;
-        font-size: clamp(0.98rem, 1.8vw, 1.08rem);
+        font-size: clamp(1.04rem, 1.9vw, 1.14rem);
         font-weight: 550;
         line-height: 1.7;
       }
@@ -162,15 +158,12 @@
 
       .schedule-panel {
         overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.92);
-        border-radius: 22px;
-        background: rgba(255, 255, 255, 0.84);
+        border: 1px solid #cbd6e2;
+        border-radius: 18px;
+        background: #fff;
         box-shadow:
-          0 24px 70px rgba(45, 63, 94, 0.11),
-          0 2px 8px rgba(45, 63, 94, 0.035),
-          inset 0 1px 0 #fff;
-        backdrop-filter: blur(18px);
-        animation: arrive 650ms 80ms both;
+          0 14px 36px rgba(35, 54, 84, 0.09),
+          0 2px 5px rgba(35, 54, 84, 0.04);
       }
 
       .section-heading {
@@ -183,14 +176,14 @@
       .section-heading h2 {
         margin: 0;
         color: #18243a;
-        font-size: 0.96rem;
+        font-size: 1.04rem;
         font-weight: 800;
         letter-spacing: -0.015em;
       }
 
       .class-count {
         color: #46536a;
-        font-size: 0.8rem;
+        font-size: 0.86rem;
         font-weight: 700;
         white-space: nowrap;
       }
@@ -204,7 +197,7 @@
 
       .timetable {
         width: 100%;
-        min-width: 1500px;
+        min-width: 1040px;
         border-collapse: separate;
         border-spacing: 0;
         table-layout: fixed;
@@ -226,23 +219,23 @@
       }
 
       .timetable thead th {
-        height: 64px;
+        height: 68px;
         padding: 12px 10px;
-        color: #27364d;
-        background: #f7f9fc;
-        font-size: 0.76rem;
+        color: #1d2b42;
+        background: #edf2f7;
+        font-size: 0.94rem;
         font-weight: 850;
-        letter-spacing: 0;
+        letter-spacing: 0.01em;
         line-height: 1.35;
         text-align: center;
         white-space: nowrap;
       }
 
       .timetable thead th:first-child {
-        width: 138px;
-        padding-left: 22px;
+        width: 140px;
+        padding-left: 20px;
         color: #1d2b42;
-        background: #f2f6f9;
+        background: #e7edf4;
         text-align: left;
       }
 
@@ -250,53 +243,42 @@
         position: sticky;
         left: 0;
         z-index: 1;
-        width: 138px;
-        padding: 16px 21px;
+        width: 140px;
+        padding: 16px 20px;
         color: #1d2b42;
-        background: #fbfcfe;
-        font-size: 0.94rem;
+        background: #f3f6fa;
+        font-size: 1.08rem;
         font-weight: 850;
         vertical-align: middle;
       }
 
       .timetable tbody tr {
-        height: 142px;
+        height: 158px;
       }
 
       .timetable td {
-        padding: 9px;
-        background: rgba(255, 255, 255, 0.55);
+        padding: 11px;
+        background: #fff;
         vertical-align: middle;
         transition: background-color 180ms ease;
       }
 
       .timetable td:empty {
-        background: #fbfcfe;
+        background: #fcfdff;
       }
 
       .timetable td:empty:hover {
-        background: #f5f9fb;
+        background: #f4f8fc;
       }
 
       .course {
         --accent: #167ab0;
-        min-height: 112px;
-        padding: 13px 12px;
-        border: 1px solid color-mix(in srgb, var(--accent) 18%, white);
-        border-left: 3px solid var(--accent);
-        border-radius: 12px;
-        background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 8%, white), #fff 75%);
-        box-shadow: 0 5px 14px rgba(44, 65, 92, 0.055);
-        transition:
-          transform 180ms ease,
-          box-shadow 180ms ease,
-          border-color 180ms ease;
-      }
-
-      .course:hover {
-        transform: translateY(-3px);
-        border-color: color-mix(in srgb, var(--accent) 34%, white);
-        box-shadow: 0 10px 24px rgba(44, 65, 92, 0.12);
+        min-height: 128px;
+        padding: 14px 13px;
+        border: 1px solid color-mix(in srgb, var(--accent) 30%, white);
+        border-left: 4px solid var(--accent);
+        border-radius: 10px;
+        background: color-mix(in srgb, var(--accent) 5%, white);
       }
 
       .course-topline {
@@ -309,20 +291,20 @@
 
       .course-code {
         color: var(--accent);
-        font-size: 0.8rem;
+        font-size: 0.96rem;
         font-weight: 900;
         letter-spacing: 0.035em;
         white-space: nowrap;
       }
 
       .venue {
-        padding: 5px 10px;
+        padding: 5px 9px;
         border: 1px solid var(--accent);
         border-radius: 999px;
         color: #fff;
         background: var(--accent);
         box-shadow: 0 3px 9px color-mix(in srgb, var(--accent) 26%, transparent);
-        font-size: 0.72rem;
+        font-size: 0.76rem;
         font-weight: 900;
         letter-spacing: 0.045em;
         white-space: nowrap;
@@ -332,19 +314,19 @@
       .course h3 {
         margin: 0;
         color: #172338;
-        font-size: 0.84rem;
+        font-size: 0.98rem;
         font-weight: 800;
-        line-height: 1.4;
+        line-height: 1.45;
       }
 
       .course time {
         display: block;
-        margin-top: 9px;
-        color: #34445c;
-        font-size: 0.72rem;
+        margin-top: 10px;
+        color: #263650;
+        font-size: 0.87rem;
         font-weight: 800;
         line-height: 1.35;
-        white-space: nowrap;
+        white-space: normal;
       }
 
       .accent-blue {
@@ -376,7 +358,7 @@
         gap: 16px;
         margin-top: 18px;
         color: #46536a;
-        font-size: 0.75rem;
+        font-size: 0.81rem;
         font-weight: 550;
         line-height: 1.6;
       }
@@ -399,18 +381,6 @@
         color: #263650;
         font-weight: 850;
         white-space: nowrap;
-      }
-
-      @keyframes arrive {
-        from {
-          transform: translateY(10px);
-          opacity: 0;
-        }
-
-        to {
-          transform: translateY(0);
-          opacity: 1;
-        }
       }
 
       @media (max-width: 700px) {
@@ -437,7 +407,7 @@
         .brand {
           gap: 8px;
           max-width: 68%;
-          font-size: 0.64rem;
+          font-size: 0.68rem;
           line-height: 1.4;
         }
 
@@ -450,15 +420,15 @@
         .session-pill {
           gap: 6px;
           padding: 8px 9px;
-          font-size: 0.61rem;
+          font-size: 0.66rem;
         }
 
         h1 {
-          font-size: clamp(2.45rem, 11vw, 3.5rem);
+          font-size: clamp(2.55rem, 11.5vw, 3.6rem);
         }
 
         .hero-subtitle {
-          font-size: 0.88rem;
+          font-size: 0.94rem;
         }
 
         .schedule-panel {
@@ -466,18 +436,18 @@
         }
 
         .section-heading h2 {
-          font-size: 0.81rem;
+          font-size: 0.88rem;
         }
 
         .class-count {
-          font-size: 0.66rem;
+          font-size: 0.72rem;
         }
 
         .footer {
           align-items: flex-start;
           flex-direction: column;
           gap: 9px;
-          font-size: 0.67rem;
+          font-size: 0.73rem;
         }
       }
 
@@ -489,6 +459,59 @@
           animation-duration: 0.01ms !important;
           animation-iteration-count: 1 !important;
           transition-duration: 0.01ms !important;
+        }
+      }
+
+      @media print {
+        @page {
+          size: landscape;
+          margin: 10mm;
+        }
+
+        body {
+          min-width: 0;
+          background: #fff;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+
+        .page-shell {
+          width: 100%;
+          padding: 0;
+        }
+
+        .topbar {
+          margin-bottom: 20px;
+        }
+
+        .hero {
+          margin-bottom: 18px;
+        }
+
+        .schedule-panel {
+          border-color: #aebdcd;
+          box-shadow: none;
+        }
+
+        .table-scroll {
+          overflow: visible;
+        }
+
+        .timetable {
+          min-width: 0;
+        }
+
+        .timetable tbody tr {
+          height: 142px;
+        }
+
+        .course {
+          box-shadow: none;
+          break-inside: avoid;
+        }
+
+        .footer {
+          margin-top: 12px;
         }
       }
     </style>
@@ -519,14 +542,14 @@
         <p class="hero-subtitle">
           <strong>Employment Relations &amp; Human Resources Management</strong>
           <span aria-hidden="true">·</span> 200 Level
-          <span aria-hidden="true">·</span> Monday to Wednesday
+          <span aria-hidden="true">·</span> Monday to Thursday
         </p>
       </header>
 
       <section class="schedule-panel" aria-labelledby="schedule-title">
         <div class="section-heading">
           <h2 id="schedule-title">Weekly schedule</h2>
-          <span class="class-count">7 lectures <span aria-hidden="true">·</span> 3 days</span>
+          <span class="class-count">7 lectures <span aria-hidden="true">·</span> 4 days</span>
         </div>
 
         <div class="table-scroll" tabindex="0" aria-label="Timetable; scroll horizontally to see all hours">
@@ -534,25 +557,17 @@
             <thead>
               <tr>
                 <th scope="col">Day / Time</th>
-                <th scope="col">8:00 – 9:00 AM</th>
-                <th scope="col">9:00 – 10:00 AM</th>
-                <th scope="col">10:00 – 11:00 AM</th>
-                <th scope="col">11:00 AM – 12:00 PM</th>
-                <th scope="col">12:00 – 1:00 PM</th>
-                <th scope="col">1:00 – 2:00 PM</th>
-                <th scope="col">2:00 – 3:00 PM</th>
-                <th scope="col">3:00 – 4:00 PM</th>
-                <th scope="col">4:00 – 5:00 PM</th>
-                <th scope="col">5:00 – 6:00 PM</th>
-                <th scope="col">6:00 – 7:00 PM</th>
+                <th scope="col">8:00 – 10:00 AM</th>
+                <th scope="col">10:00 AM – 12:00 PM</th>
+                <th scope="col">12:00 – 2:00 PM</th>
+                <th scope="col">2:00 – 4:00 PM</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row">Monday</th>
                 <td></td>
-                <td></td>
-                <td colspan="2">
+                <td>
                   <article class="course accent-blue">
                     <div class="course-topline">
                       <span class="course-code">EHR 207</span>
@@ -563,8 +578,7 @@
                   </article>
                 </td>
                 <td></td>
-                <td></td>
-                <td colspan="2">
+                <td>
                   <article class="course accent-violet">
                     <div class="course-topline">
                       <span class="course-code">EHR 203</span>
@@ -574,13 +588,10 @@
                     <time datetime="14:00">2:00 PM – 4:00 PM</time>
                   </article>
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
               </tr>
               <tr>
                 <th scope="row">Tuesday</th>
-                <td colspan="2">
+                <td>
                   <article class="course accent-amber">
                     <div class="course-topline">
                       <span class="course-code">EHR 205</span>
@@ -590,7 +601,7 @@
                     <time datetime="08:00">8:00 AM – 10:00 AM</time>
                   </article>
                 </td>
-                <td colspan="2">
+                <td>
                   <article class="course accent-cyan">
                     <div class="course-topline">
                       <span class="course-code">UIL-EHR 201</span>
@@ -601,36 +612,22 @@
                   </article>
                 </td>
                 <td></td>
-                <td></td>
-                <td colspan="2">
+                <td>
                   <article class="course accent-rose">
                     <div class="course-topline">
                       <span class="course-code">UIL-EHR 203</span>
                       <span class="venue">MLR7</span>
                     </div>
-                    <h3>Statistics for Personnel Management II</h3>
+                    <h3>Statistics for Personnel Management</h3>
                     <time datetime="14:00">2:00 PM – 4:00 PM</time>
                   </article>
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
               </tr>
               <tr>
                 <th scope="row">Wednesday</th>
-                <td colspan="2">
-                  <article class="course accent-cyan">
-                    <div class="course-topline">
-                      <span class="course-code">EHR 201</span>
-                      <span class="venue">VIRTUAL</span>
-                    </div>
-                    <h3>Human Resource Planning and Administration</h3>
-                    <time datetime="08:00">8:00 AM – 10:00 AM</time>
-                  </article>
-                </td>
                 <td></td>
                 <td></td>
-                <td colspan="2">
+                <td>
                   <article class="course accent-orange">
                     <div class="course-topline">
                       <span class="course-code">ENT 211</span>
@@ -641,7 +638,19 @@
                   </article>
                 </td>
                 <td></td>
-                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">Thursday</th>
+                <td>
+                  <article class="course accent-cyan">
+                    <div class="course-topline">
+                      <span class="course-code">EHR 201</span>
+                      <span class="venue">VIRTUAL</span>
+                    </div>
+                    <h3>Human Resource Planning and Administration</h3>
+                    <time datetime="08:00">8:00 AM – 10:00 AM</time>
+                  </article>
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
